@@ -56,6 +56,10 @@ def move_B_to_C():
     print('move_B_to_C')
     pass
 
+def move_C_to_A():
+    print('move_C_to_A')
+    pass
+
 def draw_rectangle():
     print("RECTANGLE")
     draw_top()
