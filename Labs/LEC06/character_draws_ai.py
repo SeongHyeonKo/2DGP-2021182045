@@ -39,6 +39,13 @@ def draw_rectangle():
         draw_segment(start, end)
 
 
+def draw_triangle():
+    corners = [(100, 100), (700, 100), (400, 500), (100, 100)]
+    for start, end in zip(corners, corners[1:]):
+        draw_segment(start, end)
+
+
 while True:
     draw_circle()
     draw_rectangle()
+    draw_triangle()
