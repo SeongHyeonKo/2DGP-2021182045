@@ -50,6 +50,8 @@ C = (400, 500)
 
 def move_A_to_B():
     print('move_A_to_B')
+    for x in range (100, 700, 10):
+        draw_character(x, 100)
     pass
 
 def move_B_to_C():
