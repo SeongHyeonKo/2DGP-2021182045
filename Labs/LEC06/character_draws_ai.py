@@ -23,6 +23,22 @@ def draw_circle():
         draw_character(x, y)
 
 
+def draw_segment(start, end):
+    distance = math.hypot(end[0] - start[0], end[1] - start[1])
+    steps = max(1, math.ceil(distance / 10))
+    for step in range(steps + 1):
+        t = step / steps
+        x = start[0] + (end[0] - start[0]) * t
+        y = start[1] + (end[1] - start[1]) * t
+        draw_character(x, y)
+
+
+def draw_rectangle():
+    corners = [(50, 50), (750, 50), (750, 550), (50, 550), (50, 50)]
+    for start, end in zip(corners, corners[1:]):
+        draw_segment(start, end)
+
+
 while True:
     draw_circle()
-
+    draw_rectangle()
