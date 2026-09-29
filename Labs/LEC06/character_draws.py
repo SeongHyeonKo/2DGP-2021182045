@@ -19,7 +19,7 @@ def draw_circle():
 
 def draw_top():
     print('TOP')
-    for x in range(50, 750, 5):
+    for x in range(50, 750, 10):
         draw_character(x, 550)
 
 def draw_character(x, y):
@@ -30,6 +30,8 @@ def draw_character(x, y):
 
 def draw_right():
     print('RIGHT')
+    for y in range(550, 50, -10):
+        draw_character(750, y)
     pass
 
 def draw_bottom():
