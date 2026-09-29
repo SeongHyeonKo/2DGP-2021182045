@@ -72,6 +72,7 @@ def draw_rectangle():
 
 def draw_triangle():
     print("TRIANGLE")
+    move_A_to_B()
     pass
 
 while True:
