@@ -14,7 +14,7 @@ def draw_character(x, y):
 
 def draw_circle():
     print("CIRCLE")
-    for deg in range(0, 360, 10):
+    for deg in range(0, 360, 20):
         rad = math.radians(deg)
         x = 400 + 200 * math.cos(rad)
         y = 400 + 200 * math.sin(rad)
