@@ -22,22 +22,22 @@ def draw_circle():
 
 def draw_top():
     print('TOP')
-    for x in range(50, 750, 10):
+    for x in range(50, 750, 20):
         draw_character(x, 550)
 
 def draw_right():
     print('RIGHT')
-    for y in range(550, 50, -10):
+    for y in range(550, 50, -20):
         draw_character(750, y)
 
 def draw_bottom():
     print('BOTTOM')
-    for x in range(750, 50, -10):
+    for x in range(750, 50, -20):
         draw_character(x, 50)
 
 def draw_left():
     print('LEFT')
-    for y in range(50, 550, 10):
+    for y in range(50, 550, 20):
         draw_character(50, y)
 
 A = (100, 100)
