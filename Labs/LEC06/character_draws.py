@@ -46,22 +46,22 @@ C = (400, 500)
 
 def move_A_to_B():
     print('move_A_to_B')
-    for x in range (100, 700, 10):
+    for x in range (100, 700, 20):
         draw_character(x, 100)
 
 def move_B_to_C():
     print('move_B_to_C')
     y = 100
-    for x in range(700, 400, -10):
+    for x in range(700, 400, -20):
         draw_character(x, y)
-        y += 13.33
+        y += 26.67
 
 def move_C_to_A():
     print('move_C_to_A')
     y = 500
-    for x in range(400, 100, -10):
+    for x in range(400, 100, -20):
         draw_character(x, y)
-        y -= 13.33
+        y -= 26.67
 
 def draw_rectangle():
     print("RECTANGLE")
