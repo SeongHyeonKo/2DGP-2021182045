@@ -55,8 +55,8 @@ def move_A_to_B():
     pass
 
 def move_B_to_C():
-    y = 100
     print('move_B_to_C')
+    y = 100
     for x in range(700, 400, -10):
         draw_character(x, y)
         y += 13.33
@@ -64,6 +64,10 @@ def move_B_to_C():
 
 def move_C_to_A():
     print('move_C_to_A')
+    y = 500
+    for x in range(400, 100, -10):
+        draw_character(x, y)
+        y -= 13.33
     pass
 
 def draw_rectangle():
