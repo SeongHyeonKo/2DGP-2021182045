@@ -50,6 +50,11 @@ C = (400, 500)
 
 def move_A_to_B():
     print('move_A_to_B')
+    pass
+
+def move_B_to_C():
+    print('move_B_to_C')
+    pass
 
 def draw_rectangle():
     print("RECTANGLE")
