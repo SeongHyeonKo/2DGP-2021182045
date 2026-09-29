@@ -82,6 +82,7 @@ def draw_triangle():
     print("TRIANGLE")
     move_A_to_B()
     move_B_to_C()
+    move_C_to_A()
     pass
 
 while True:
