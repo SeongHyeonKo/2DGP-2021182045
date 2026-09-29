@@ -55,7 +55,11 @@ def move_A_to_B():
     pass
 
 def move_B_to_C():
+    y = 100
     print('move_B_to_C')
+    for x in range(700, 400, -10):
+        draw_character(x, y)
+        y += 13.33
     pass
 
 def move_C_to_A():
