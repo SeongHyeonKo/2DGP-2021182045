@@ -5,3 +5,4 @@ is cropped and its connected sheet background is made transparent at startup.
 """
 
 from collections import Counter, deque
+from pathlib import Path
