@@ -99,3 +99,20 @@ def _make_chunk(chunk_type, payload):
     return struct.pack(">I", len(payload)) + chunk + struct.pack(">I", zlib.crc32(chunk) & 0xFFFFFFFF)
 
 
+def _write_rgba_png(path, width, height, rgba):
+    scanlines = bytearray()
+    stride = width * 4
+    for y in range(height):
+        scanlines.append(0)
+        scanlines.extend(rgba[y * stride:(y + 1) * stride])
+
+    header = struct.pack(">IIBBBBB", width, height, 8, 6, 0, 0, 0)
+    png = (
+        b"\x89PNG\r\n\x1a\n"
+        + _make_chunk(b"IHDR", header)
+        + _make_chunk(b"IDAT", zlib.compress(scanlines))
+        + _make_chunk(b"IEND", b"")
+    )
+    path.write_bytes(png)
+
+
