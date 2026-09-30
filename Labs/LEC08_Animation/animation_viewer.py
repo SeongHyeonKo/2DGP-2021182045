@@ -94,3 +94,8 @@ def _decode_png(path):
     return width, height, rows
 
 
+def _make_chunk(chunk_type, payload):
+    chunk = chunk_type + payload
+    return struct.pack(">I", len(payload)) + chunk + struct.pack(">I", zlib.crc32(chunk) & 0xFFFFFFFF)
+
+
