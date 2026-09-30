@@ -210,3 +210,31 @@ FRAME_REGIONS = {
 }
 
 
+def _load_animations(temp_directory):
+    asset_names = ("Sprite_Sheet_Ninja_Turtle.png", "Sprite_sheet_Ninja_Turtle.png")
+    sheet_path = next(
+        (Path(__file__).with_name(name) for name in asset_names if Path(__file__).with_name(name).is_file()),
+        None,
+    )
+    if sheet_path is None:
+        expected_path = Path(__file__).with_name(asset_names[0])
+        raise FileNotFoundError(f"스프라이트 시트를 찾을 수 없습니다: {expected_path}")
+
+    sheet_width, sheet_height, rows = _decode_png(sheet_path)
+    sheet_edges = [
+        tuple(rows[y][x * 3:x * 3 + 3])
+        for y in range(40, sheet_height - 40)
+        for x in (0, 1, sheet_width - 2, sheet_width - 1)
+    ]
+    sheet_background = Counter(sheet_edges).most_common(1)[0][0]
+    animations = []
+    for animation_name, regions in FRAME_REGIONS.items():
+        frames = []
+        for frame_index, region in enumerate(regions):
+            frame_path = Path(temp_directory) / f"{animation_name}_{frame_index}.png"
+            frame_width, frame_height = _extract_frame(rows, sheet_width, sheet_background, region, frame_path)
+            frames.append((load_image(str(frame_path)), frame_width, frame_height))
+        animations.append((animation_name, frames))
+    return animations
+
+
