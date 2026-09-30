@@ -11,3 +11,6 @@ import tempfile
 import zlib
 
 from pico2d import *
+
+
+CANVAS_WIDTH = 960
