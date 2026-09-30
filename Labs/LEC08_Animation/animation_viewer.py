@@ -9,3 +9,5 @@ from pathlib import Path
 import struct
 import tempfile
 import zlib
+
+from pico2d import *
