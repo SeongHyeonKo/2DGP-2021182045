@@ -247,3 +247,43 @@ def _quit_requested():
     return False
 
 
+def main():
+    open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    try:
+        with tempfile.TemporaryDirectory(prefix="ninja_turtle_frames_") as temp_path:
+            temp_directory = Path(temp_path)
+            animations = _load_animations(temp_directory)
+
+            while True:
+                should_quit = False
+                for _, frames in animations:
+                    for _ in range(REPEAT_COUNT):
+                        for image, frame_width, frame_height in frames:
+                            if _quit_requested():
+                                should_quit = True
+                                break
+
+                            scale = min(
+                                CANVAS_WIDTH * 0.68 / frame_width,
+                                CANVAS_HEIGHT * 0.62 / frame_height,
+                            )
+                            clear_canvas()
+                            image.draw(
+                                CANVAS_WIDTH / 2,
+                                CANVAS_HEIGHT / 2,
+                                frame_width * scale,
+                                frame_height * scale,
+                            )
+                            update_canvas()
+                            delay(FRAME_DELAY)
+                        if should_quit:
+                            break
+                    if should_quit:
+                        break
+                    delay(PAUSE_SECONDS)
+                if should_quit:
+                    break
+    finally:
+        close_canvas()
+
+
