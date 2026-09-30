@@ -187,3 +187,10 @@ def _extract_frame(rows, sheet_width, sheet_background, region, output_path):
     return output_width, output_height
 
 
+def _grid_regions(start_x, start_y, count):
+    return [
+        (start_x + index * 97, start_y, start_x + index * 97 + 88, start_y + 90)
+        for index in range(count)
+    ]
+
+
