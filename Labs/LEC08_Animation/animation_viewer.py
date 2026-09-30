@@ -8,3 +8,4 @@ from collections import Counter, deque
 from pathlib import Path
 import struct
 import tempfile
+import zlib
