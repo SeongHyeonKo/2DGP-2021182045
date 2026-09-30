@@ -238,3 +238,12 @@ def _load_animations(temp_directory):
     return animations
 
 
+def _quit_requested():
+    for event in get_events():
+        if event.type == SDL_QUIT:
+            return True
+        if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            return True
+    return False
+
+
