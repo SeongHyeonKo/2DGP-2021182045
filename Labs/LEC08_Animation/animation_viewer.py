@@ -116,3 +116,74 @@ def _write_rgba_png(path, width, height, rgba):
     path.write_bytes(png)
 
 
+def _extract_frame(rows, sheet_width, sheet_background, region, output_path):
+    left, top, right, bottom = region
+    width, height = right - left, bottom - top
+    if left < 0 or top < 0 or right > sheet_width or width <= 0 or height <= 0:
+        raise ValueError(f"스프라이트 프레임 영역이 이미지 범위를 벗어났습니다: {region}")
+
+    pixels = [
+        tuple(rows[y][x * 3:x * 3 + 3])
+        for y in range(top, bottom)
+        for x in range(left, right)
+    ]
+    background = Counter(pixels).most_common(1)[0][0]
+
+    background_colors = (background, sheet_background)
+
+    def matches_background(pixel):
+        return any(
+            all(abs(pixel[channel] - color[channel]) <= BACKGROUND_TOLERANCE for channel in range(3))
+            for color in background_colors
+        )
+
+    transparent = bytearray(width * height)
+    queue = deque()
+
+    def enqueue(index):
+        if not transparent[index] and matches_background(pixels[index]):
+            transparent[index] = 1
+            queue.append(index)
+
+    for x in range(width):
+        enqueue(x)
+        enqueue((height - 1) * width + x)
+    for y in range(height):
+        enqueue(y * width)
+        enqueue(y * width + width - 1)
+
+    while queue:
+        index = queue.popleft()
+        x, y = index % width, index // width
+        if x:
+            enqueue(index - 1)
+        if x + 1 < width:
+            enqueue(index + 1)
+        if y:
+            enqueue(index - width)
+        if y + 1 < height:
+            enqueue(index + width)
+
+    visible = [index for index, is_background in enumerate(transparent) if not is_background]
+    if not visible:
+        raise ValueError(f"프레임에서 캐릭터를 찾을 수 없습니다: {region}")
+
+    min_x = min(index % width for index in visible)
+    max_x = max(index % width for index in visible) + 1
+    min_y = min(index // width for index in visible)
+    max_y = max(index // width for index in visible) + 1
+    output_width, output_height = max_x - min_x, max_y - min_y
+    rgba = bytearray(output_width * output_height * 4)
+
+    for y in range(min_y, max_y):
+        for x in range(min_x, max_x):
+            source_index = y * width + x
+            target_index = ((y - min_y) * output_width + x - min_x) * 4
+            if not transparent[source_index]:
+                rgba[target_index:target_index + 3] = bytes(pixels[source_index])
+                rgba[target_index + 3] = 255
+
+    _write_rgba_png(output_path, output_width, output_height, rgba)
+    return output_width, output_height
+
+
