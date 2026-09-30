@@ -14,3 +14,4 @@ from pico2d import *
 
 
 CANVAS_WIDTH = 960
+CANVAS_HEIGHT = 720
