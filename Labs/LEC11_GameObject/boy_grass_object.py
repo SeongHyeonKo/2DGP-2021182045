@@ -3,6 +3,43 @@ import random
 
 
 # Game object class here
+class Grass:
+    def __init__(self): 
+        self.image = load_image('grass.png')
+
+    def draw(self):
+        self.image.draw(400, 30)
+
+    def update(self): pass
+
+class Boy:
+    def __init__(self):
+        self.x, self.y = random.randint(100, 700), 90
+        self.frame = random.randint(0, 7)
+        self.image = load_image('run_animation.png')
+
+    def update(self):
+        self.frame = (self.frame + 1) % 8
+        self.x += 5
+
+    def draw(self):
+        self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
+
+class Zombie:
+    def __init__(self):
+        self.x, self.y = 100, 170
+        self.frame = 0
+        self.image = load_image('zombie_run_animation.png')
+
+    def update(self):
+        self.frame = (self.frame + 1) % 10
+        self.x += 5
+
+    def draw(self):
+        frame_width = self.image.w // 10
+        frame_height = self.image.h
+        self.image.clip_draw(self.frame * frame_width, 0, frame_width, frame_height,
+                            self.x, self.y, frame_width // 2, frame_height // 2)
 
 
 def handle_events():
@@ -15,10 +52,63 @@ def handle_events():
             running = False
 
 
+# 초기화 코드 
+def reset_world(): 
+    global running
+    global world
+
+    running = True
+    world = []
+
+    # 땅 객체 생성
+    global grass
+    grass = Grass()
+    world.append(grass)
+
+    # 좀비 객체 생성
+    global zombie
+    zombie = Zombie()
+    world.append(zombie)
+
+    # 소년 객체 생성
+   # global boy
+   # boy = Boy()
+
+    # global team
+    team = [Boy() for i in range(11)]
+    world += team
+
+# 게임 루프 코드
+def update_world():
+    for o in world:
+        o.update()
+
+    #grass.update()
+    #for boy in team:
+     #   boy.update()
+
+# 종료 코드
+def render_world():
+    clear_canvas()
+    for o in world:
+        o.draw()
+   # grass.draw()
+    #for boy in team:
+     #   boy.draw()
+    update_canvas()
 
 
 open_canvas()
 
+reset_world()
 
+while running:
+    handle_events()
+    update_world()
+    render_world()
+    delay(0.05)
 
 close_canvas()
+
+
+ 
