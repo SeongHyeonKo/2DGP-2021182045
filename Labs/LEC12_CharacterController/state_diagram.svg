@@ -1,16 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="220" viewBox="0 0 520 220">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
       <path d="M0,0 L10,4 L0,8 Z" fill="#334155"/>
     </marker>
   </defs>
-  <rect width="520" height="220" rx="18" fill="#f8fafc"/>
-  <text x="260" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#0f172a">Boy State Machine</text>
-  <circle cx="100" cy="120" r="7" fill="#0f172a"/>
-  <path d="M107 120 H206" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
-  <rect x="220" y="82" width="170" height="76" rx="38" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
-  <text x="305" y="127" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#1e3a8a">IDLE</text>
-  <path d="M267 83 C225 34 386 34 344 83" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="305" y="62" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#475569">애니메이션 프레임 갱신</text>
-  <text x="260" y="192" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#475569">현재 상태: IDLE · 이동 없음</text>
+  <rect width="760" height="330" rx="18" fill="#f8fafc"/>
+  <text x="380" y="38" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="700" fill="#0f172a">Boy State Machine</text>
+  <circle cx="38" cy="158" r="7" fill="#0f172a"/>
+  <path d="M45 158 H80" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="95" y="122" width="140" height="72" rx="36" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="165" y="165" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#1e3a8a">IDLE</text>
+  <rect x="310" y="122" width="140" height="72" rx="36" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="380" y="165" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#166534">RUN</text>
+  <rect x="570" y="122" width="140" height="72" rx="36" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="640" y="165" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="700" fill="#92400e">SLEEP</text>
+  <path d="M235 143 H302" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="268" y="130" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">LEFT / RIGHT down</text>
+  <path d="M310 177 H243" stroke="#334155" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="276" y="213" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">direction key up</text>
+  <path d="M208 122 C280 60 528 60 596 122" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="402" y="76" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">5 seconds in IDLE</text>
+  <path d="M570 176 C510 252 282 252 224 192" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="402" y="270" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">SPACE</text>
+  <path d="M640 122 C640 35 380 35 380 114" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="520" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">LEFT / RIGHT down</text>
+  <text x="165" y="225" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">Idle animation</text>
+  <text x="380" y="225" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">Run animation + movement</text>
+  <text x="640" y="225" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#475569">Lying down</text>
 </svg>

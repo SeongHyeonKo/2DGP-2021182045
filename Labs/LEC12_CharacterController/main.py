@@ -12,6 +12,16 @@ def handle_events():
             running = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
+            boy.wake_up_from_space()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
+            boy.press_direction(-1)
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
+            boy.press_direction(1)
+        elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
+            boy.release_direction(-1)
+        elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
+            boy.release_direction(1)
 
 
 def reset_world():
